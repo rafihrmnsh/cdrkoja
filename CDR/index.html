@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Container Damage Report - TPK KOJA</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav class="position-absolute top-0 end-0 p-3">
+      <a href="login.html" class="btn btn-light btn-modern-white">Admin Login</a>
+    </nav>
+    <div class="form-container">
+      <div class="text-center mb-4">
+        <h1><img src="images/koja.jpg" alt="TPK KOJA" class="img-fluid" /></h1>
+        <h2>Container Damage Report</h2>
+      </div>
+
+      <form>
+        <!-- Section 1: EIR, Vessel, etc. -->
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label for="eirNo" class="form-label">EIR No:</label>
+            <input type="text" class="form-control" id="eirNo" name="eirNo" />
+          </div>
+          <div class="col-md-6">
+            <label for="damageDate" class="form-label">Date of Damage:</label>
+            <input
+              type="date"
+              class="form-control"
+              id="damageDate"
+              name="damageDate"
+            />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label for="vessel" class="form-label">Vessel:</label>
+            <input type="text" class="form-control" id="vessel" name="vessel" />
+          </div>
+          <div class="col-md-6">
+            <label for="voyageNo" class="form-label">Voyage No:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="voyageNo"
+              name="voyageNo"
+            />
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="containerSerialNo" class="form-label"
+            >Container Serial No:</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="containerSerialNo"
+            name="containerSerialNo"
+          />
+        </div>
+
+        <!-- Section 2: Container Diagrams -->
+        <div class="text-center my-4">
+          <div class="row justify-content-center g-3">
+            <div class="col-12 col-sm-6">
+              <div class="container-side">
+                <img
+                  src="images/Rear-Side-Container.png"
+                  alt="Rear Side"
+                  class="img-fluid"
+                />
+                <div class="form-check mt-2">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value="true"
+                    id="rearSideCheck"
+                    name="rearSideCheck"
+                  />
+                  <label class="form-check-label" for="rearSideCheck"
+                    >Rear Side</label
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-sm-6">
+              <div class="container-side">
+                <img
+                  src="images/Front-Side-Container.png"
+                  alt="Front Side"
+                  class="img-fluid"
+                />
+                <div class="form-check mt-2">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value="true"
+                    id="frontSideCheck"
+                    name="frontSideCheck"
+                  />
+                  <label class="form-check-label" for="frontSideCheck"
+                    >Front Side</label
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row justify-content-center g-3 mt-1">
+            <div class="col-12 col-sm-6">
+              <div class="container-side">
+                <img
+                  src="images/Top-Side-Container.png"
+                  alt="Top Side"
+                  class="img-fluid"
+                />
+                <div class="form-check mt-2">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value="true"
+                    id="topSideCheck"
+                    name="topSideCheck"
+                  />
+                  <label class="form-check-label" for="topSideCheck"
+                    >Top Side</label
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-sm-6">
+              <div class="container-side">
+                <img
+                  src="images/Under-Side-Container.png"
+                  alt="Under Side"
+                  class="img-fluid"
+                />
+                <div class="form-check mt-2">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value="true"
+                    id="underSideCheck"
+                    name="underSideCheck"
+                  />
+                  <label class="form-check-label" for="underSideCheck"
+                    >Under Side</label
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row justify-content-center g-3 mt-1">
+            <div class="col-12 col-sm-6">
+              <div class="container-side">
+                <img
+                  src="images/Right-Side-Container.png"
+                  alt="Right Side"
+                  class="img-fluid"
+                />
+                <div class="form-check mt-2">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value="true"
+                    id="rightSideCheck"
+                    name="rightSideCheck"
+                  />
+                  <label class="form-check-label" for="rightSideCheck"
+                    >Right Side</label
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-sm-6">
+              <div class="container-side">
+                <img
+                  src="images/Left-Side-Container.png"
+                  alt="Left Side"
+                  class="img-fluid"
+                />
+                <div class="form-check mt-2">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value="true"
+                    id="leftSideCheck"
+                    name="leftSideCheck"
+                  />
+                  <label class="form-check-label" for="leftSideCheck"
+                    >Left Side</label
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row justify-content-center g-3 mt-1">
+            <div class="col-12 col-sm-6">
+              <div class="container-side">
+                <img
+                  src="images/Interior-Side-Container.png"
+                  alt="Interior"
+                  class="img-fluid"
+                />
+                <div class="form-check mt-2">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value="true"
+                    id="interiorCheck"
+                    name="interiorCheck"
+                  />
+                  <label class="form-check-label" for="interiorCheck"
+                    >Interior</label
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 3: Area of Damage -->
+        <h4 class="mt-5">Area of Damage Efficiency</h4>
+        <div class="row">
+          <div class="col-md-3">
+            <h5>Front</h5>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value="true"
+                id="frontPanel"
+                name="frontPanel"
+              />
+              <label class="form-check-label" for="frontPanel">Panel</label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value="true"
+                id="frontIntExtPosts"
+                name="frontIntExtPosts"
+              />
+              <label class="form-check-label" for="frontIntExtPosts"
+                >Int/Ext Posts</label
+              >
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value="true"
+                id="frontCornerPosts"
+                name="frontCornerPosts"
+              />
+              <label class="form-check-label" for="frontCornerPosts"
+                >Corner Posts</label
+              >
+            </div>
+          </div>
+          <div class="col-md-3">
+            <h5>Sides</h5>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value="true"
+                id="sidesPanel"
+                name="sidesPanel"
+              />
+              <label class="form-check-label" for="sidesPanel">Panel</label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value="true"
+                id="sidesIntExtPosts"
+                name="sidesIntExtPosts"
+              />
+              <label class="form-check-label" for="sidesIntExtPosts"
+                >Int/Ext Posts</label
+              >
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value="true"
+                id="sidesTopRail"
+                name="sidesTopRail"
+              />
+              <label class="form-check-label" for="sidesTopRail"
+                >Top Rall</label
+              >
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value="true"
+                id="sidesBottomRail"
+                name="sidesBottomRail"
+              />
+              <label class="form-check-label" for="sidesBottomRail"
+                >Bottom Rall</label
+              >
+            </div>
+          </div>
+          <div class="col-md-3">
+            <h5>Doors/Rear</h5>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value="true"
+                id="doorsPanel"
+                name="doorsPanel"
+              />
+              <label class="form-check-label" for="doorsPanel">Panel</label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value="true"
+                id="doorsDoorGear"
+                name="doorsDoorGear"
+              />
+              <label class="form-check-label" for="doorsDoorGear"
+                >Door Gear</label
+              >
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value="true"
+                id="doorsCornerPost"
+                name="doorsCornerPost"
+              />
+              <label class="form-check-label" for="doorsCornerPost"
+                >Corner Post</label
+              >
+            </div>
+          </div>
+          <div class="col-md-3">
+            <h5>Roof</h5>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value="true"
+                id="roofPanel"
+                name="roofPanel"
+              />
+              <label class="form-check-label" for="roofPanel">Panel/Tift</label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value="true"
+                id="roofTiftWire"
+                name="roofTiftWire"
+              />
+              <label class="form-check-label" for="roofTiftWire"
+                >Tift Wire</label
+              >
+            </div>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-3">
+            <h5>Under Sides</h5>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value="true"
+                id="underBearers"
+                name="underBearers"
+              />
+              <label class="form-check-label" for="underBearers">Bearers</label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value="true"
+                id="underGussets"
+                name="underGussets"
+              />
+              <label class="form-check-label" for="underGussets">Gussets</label>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <h5>Interior</h5>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value="true"
+                id="interiorFlooring"
+                name="interiorFlooring"
+              />
+              <label class="form-check-label" for="interiorFlooring"
+                >Flooring</label
+              >
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value="true"
+                id="interiorInteriorPanel"
+                name="interiorInteriorPanel"
+              />
+              <label class="form-check-label" for="interiorInteriorPanel"
+                >Interior Panel</label
+              >
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value="true"
+                id="interiorBattents"
+                name="interiorBattents"
+              />
+              <label class="form-check-label" for="interiorBattents"
+                >Battents</label
+              >
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value="true"
+                id="interiorRaftBows"
+                name="interiorRaftBows"
+              />
+              <label class="form-check-label" for="interiorRaftBows"
+                >Raft Bows</label
+              >
+            </div>
+          </div>
+          <div class="col-md-3">
+            <h5>Others</h5>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value="true"
+                id="othersSeals"
+                name="othersSeals"
+              />
+              <label class="form-check-label" for="othersSeals">Seals:</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-4">
+          <label for="liableParty" class="form-label"
+            >Name and Address of party in whose care when damage accured (Liable
+            Party)</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="liableParty"
+            name="liableParty"
+          />
+          <div class="form-text">
+            Date letter of recourse sent to liable party (attach copy to
+            Insurance & Claims dept)
+          </div>
+        </div>
+
+        <div class="mt-3">
+          <label class="form-label">Container:</label>
+          <div class="form-check form-check-inline">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="containerStatus"
+              id="containerLoaded"
+              value="loaded"
+            />
+            <label class="form-check-label" for="containerLoaded">Loaded</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="containerStatus"
+              id="containerEmpty"
+              value="empty"
+            />
+            <label class="form-check-label" for="containerEmpty">Empty</label>
+          </div>
+        </div>
+
+        <div class="mt-3">
+          <label for="reportingPerson" class="form-label"
+            >Signature of Person Reporting:</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="reportingPerson"
+            name="reportingPerson"
+          />
+          <div class="form-text">
+            Describe the extent of the damage or deficience and detail how the
+            damage occured. (Include vechile Reg. Nos. driver's names damages to
+            other property, e.t.c)
+          </div>
+        </div>
+
+        <!-- Section 4: Photo and Signatures -->
+        <h4 class="mt-5">Photo of Damage Container</h4>
+        <input
+          type="file"
+          id="damagePhotoInput"
+          name="damagePhotoInput"
+          accept="image/*"
+          style="display: none"
+        />
+        <div class="d-flex justify-content-center align-items-center">
+          <label
+            for="damagePhotoInput"
+            class="photo-upload-area"
+            id="photoUploadLabel"
+            >Click to upload</label
+          >
+          <button
+            type="button"
+            class="btn btn-secondary ms-3"
+            id="take-photo-btn"
+          >
+            Take Photo
+          </button>
+        </div>
+        <div id="imagePreview" class="mt-3"></div>
+
+        <div class="row mt-4">
+          <div class="col-md-6">
+            <label class="form-label">Damage to Contents:</label>
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="damageContents"
+                id="damageYes"
+                value="yes"
+              />
+              <label class="form-check-label" for="damageYes">Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="damageContents"
+                id="damageNo"
+                value="no"
+              />
+              <label class="form-check-label" for="damageNo">No</label>
+            </div>
+          </div>
+        </div>
+        <div class="text-center mt-5">
+          <button type="submit" class="btn btn-submit">Submit</button>
+        </div>
+      </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/signature_pad/4.1.7/signature_pad.umd.min.js"></script>
+    <script type="module" src="camera.js"></script>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
