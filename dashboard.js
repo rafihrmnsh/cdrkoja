@@ -115,16 +115,16 @@ async function generatePdf(reportId, jsPDF) {
     if (!report) return;
 
     // Populate the hidden template
-    document.getElementById('pdf-eirNo').textContent = report.eirNo || 'N/A';
-    document.getElementById('pdf-damageDate').textContent = report.damageDate || 'N/A';
-    document.getElementById('pdf-vessel').textContent = report.vessel || 'N/A';
-    document.getElementById('pdf-voyageNo').textContent = report.voyageNo || 'N/A';
-    document.getElementById('pdf-containerSerialNo').textContent = report.containerSerialNo || 'N/A'; // Add Container Serial No to header
+    document.getElementById('pdf-eirNo').textContent = report.eirNo || '';
+    document.getElementById('pdf-damageDate').textContent = report.damageDate || '';
+    document.getElementById('pdf-vessel').textContent = report.vessel || '';
+    document.getElementById('pdf-voyageNo').textContent = report.voyageNo || '';
+    document.getElementById('pdf-containerSerialNo').textContent = report.containerSerialNo || '';
 
-    document.getElementById('pdf-containerStatus').textContent = report.containerStatus ? `Container: ${report.containerStatus.toUpperCase()}` : 'Container: N/A';
-    document.getElementById('pdf-damageContents').textContent = report.damageContents ? `Damage To Contents: ${report.damageContents.toUpperCase()}` : 'Damage To Contents: N/A';
-    document.getElementById('pdf-reportingPerson').textContent = report.reportingPerson || 'N/A';
-    document.getElementById('pdf-liableParty').textContent = report.liableParty || 'N/A';
+    document.getElementById('pdf-containerStatus').textContent = `Container: ${report.containerStatus ? report.containerStatus.toUpperCase() : ''}`;
+    document.getElementById('pdf-damageContents').textContent = `Damage To: Contents: ${report.damageContents ? report.damageContents.toUpperCase() : ''}`;
+    document.getElementById('pdf-reportingPerson').textContent = `Signature of Person Reporting: ${report.reportingPerson || ''}`;
+    document.getElementById('pdf-liableParty').textContent = report.liableParty || '';
 
     // Checkboxes
     const checkboxMap = {
@@ -140,7 +140,27 @@ async function generatePdf(reportId, jsPDF) {
     for (const key in checkboxMap) {
         const el = document.getElementById(`pdf-${key}`);
         if (el) {
-            el.innerHTML = `${checkboxMap[key]} ${report[key] === 'true' ? '&#9745;' : '&#9744;'}`;
+            // Using unicode characters for checked and unchecked boxes
+            const checkbox = report[key] === 'true' ? '&#9745;' : '&#9744;';
+            el.innerHTML = `${checkbox} ${checkboxMap[key]}`;
+        }
+    }
+
+    // Damage Plan Checkboxes
+    const damagePlanCheckboxes = {
+        rearSideCheck: 'pdf-check-rearSideCheck',
+        frontSideCheck: 'pdf-check-frontSideCheck',
+        topSideCheck: 'pdf-check-topSideCheck',
+        underSideCheck: 'pdf-check-underSideCheck',
+        rightSideCheck: 'pdf-check-rightSideCheck',
+        leftSideCheck: 'pdf-check-leftSideCheck',
+        interiorCheck: 'pdf-check-interiorCheck'
+    };
+
+    for (const key in damagePlanCheckboxes) {
+        const el = document.getElementById(damagePlanCheckboxes[key]);
+        if (el) {
+            el.innerHTML = report[key] === 'true' ? '&#9745;' : '&#9744;';
         }
     }
 
@@ -152,9 +172,10 @@ async function generatePdf(reportId, jsPDF) {
         img.src = report.damagePhoto;
         img.style.maxWidth = '100%';
         img.style.maxHeight = '100%';
+        img.style.objectFit = 'contain';
         damagePhotoEl.appendChild(img);
     } else {
-        damagePhotoEl.textContent = 'No Damage Photo Available';
+        damagePhotoEl.textContent = 'Bagian Foto';
     }
 
     const sigShipEl = document.getElementById('pdf-signatureShip');
@@ -163,9 +184,9 @@ async function generatePdf(reportId, jsPDF) {
         const img = document.createElement('img');
         img.src = report.signatureShip;
         img.style.width = '100%';
+        img.style.height = '100%';
+        img.style.objectFit = 'contain';
         sigShipEl.appendChild(img);
-    } else {
-        sigShipEl.textContent = '(Ship\'s Party Signature)';
     }
 
     const sigAgentEl = document.getElementById('pdf-signatureAgent');
@@ -174,9 +195,9 @@ async function generatePdf(reportId, jsPDF) {
         const img = document.createElement('img');
         img.src = report.signatureAgent;
         img.style.width = '100%';
+        img.style.height = '100%';
+        img.style.objectFit = 'contain';
         sigAgentEl.appendChild(img);
-    } else {
-        sigAgentEl.textContent = '(Agent\'s Party Signature)';
     }
     
     const sigOpEl = document.getElementById('pdf-signatureOperational');
@@ -185,23 +206,47 @@ async function generatePdf(reportId, jsPDF) {
         const img = document.createElement('img');
         img.src = report.signatureOperational;
         img.style.width = '100%';
+        img.style.height = '100%';
+        img.style.objectFit = 'contain';
         sigOpEl.appendChild(img);
-    } else {
-        sigOpEl.textContent = '(Operational Signature)';
     }
 
 
     const pdfTemplate = document.getElementById('pdf-template-container');
-    const canvas = await html2canvas(pdfTemplate, { scale: 2 });
+    const canvas = await html2canvas(pdfTemplate, {
+        scale: 2,
+        useCORS: true // In case images are from other origins
+    });
     const imgData = canvas.toDataURL('image/png');
     
+    // Using a standard A4 size and fitting the content
     const pdf = new jsPDF({
         orientation: 'portrait',
-        unit: 'px',
-        format: [pdfTemplate.offsetWidth, pdfTemplate.offsetHeight]
+        unit: 'in',
+        format: 'a4'
     });
 
-    pdf.addImage(imgData, 'PNG', 0, 0, pdfTemplate.offsetWidth, pdfTemplate.offsetHeight);
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = pdf.internal.pageSize.getHeight();
+    const canvasWidth = canvas.width;
+    const canvasHeight = canvas.height;
+    const canvasAspectRatio = canvasWidth / canvasHeight;
+    const pdfAspectRatio = pdfWidth / pdfHeight;
+
+    let finalWidth, finalHeight;
+
+    if (canvasAspectRatio > pdfAspectRatio) {
+        finalWidth = pdfWidth;
+        finalHeight = pdfWidth / canvasAspectRatio;
+    } else {
+        finalHeight = pdfHeight;
+        finalWidth = pdfHeight * canvasAspectRatio;
+    }
+
+    const x = (pdfWidth - finalWidth) / 2;
+    const y = (pdfHeight - finalHeight) / 2;
+    
+    pdf.addImage(imgData, 'PNG', x, y, finalWidth, finalHeight);
     pdf.save(`CDR-${report.containerSerialNo || 'report'}.pdf`);
 }
 

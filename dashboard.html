@@ -764,269 +764,160 @@
     </div>
 
     <!-- Hidden PDF Template -->
-    <div
-      id="pdf-template-container"
-      style="
-        position: absolute;
-        left: -9999px;
-        width: 800px;
-        padding: 20px;
-        background-color: white;
-        font-family: Arial, sans-serif;
-        font-size: 10px;
-      "
-    >
-      <div
-        style="
-          display: flex;
-          justify-content: space-between;
-          align-items: flex-start;
-          border-bottom: 2px solid black;
-          padding-bottom: 10px;
-        "
-      >
-        <img src="images/koja.jpg" alt="TPK KOJA" style="width: 150px" />
-        <div style="text-align: right">
-          <div style="display: flex; border: 1px solid black">
-            <div style="padding: 5px; border-right: 1px solid black">
-              EIR No:
+    <div id="pdf-template-container" style="position: absolute; left: -9999px; width: 8.5in; height: 11in; padding: 0.5in; background-color: white; font-family: Arial, sans-serif; font-size: 10px;">
+        
+        <!-- Header -->
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 10px;">
+            <div>
+                <img src="images/koja.jpg" alt="TPK KOJA" style="width: 180px;" />
+                <h1 style="font-size: 24px; font-weight: bold; margin: 10px 0 0 0;">Container Damage Report</h1>
             </div>
-            <div id="pdf-eirNo" style="padding: 5px; width: 100px"></div>
-          </div>
-          <div style="display: flex; border: 1px solid black; border-top: none">
-            <div style="padding: 5px; border-right: 1px solid black">
-              Date of Damage:
+            <div style="border: 2px solid black;">
+                <div style="display: flex; border-bottom: 1px solid black;">
+                    <div style="padding: 4px 8px; border-right: 1px solid black; font-weight: bold;">EIR No:</div>
+                    <div id="pdf-eirNo" style="padding: 4px 8px; width: 150px;"></div>
+                    <div style="padding: 4px 8px; border-left: 1px solid black; font-weight: bold;">Date of Damage:</div>
+                    <div id="pdf-damageDate" style="padding: 4px 8px; width: 100px;"></div>
+                </div>
+                <div style="display: flex;">
+                    <div style="padding: 4px 8px; border-right: 1px solid black; font-weight: bold;">Vessel:</div>
+                    <div id="pdf-vessel" style="padding: 4px 8px; width: 150px;"></div>
+                     <div style="padding: 4px 8px; border-left: 1px solid black; font-weight: bold;">Voyage No:</div>
+                    <div id="pdf-voyageNo" style="padding: 4px 8px; width: 100px;"></div>
+                </div>
             </div>
-            <div id="pdf-damageDate" style="padding: 5px; width: 100px"></div>
-          </div>
-          <div style="display: flex; border: 1px solid black; border-top: none">
-            <div style="padding: 5px; border-right: 1px solid black">
-              Vessel:
-            </div>
-            <div id="pdf-vessel" style="padding: 5px; width: 100px"></div>
-          </div>
-          <div style="display: flex; border: 1px solid black; border-top: none">
-            <div style="padding: 5px; border-right: 1px solid black">
-              Voyage No:
-            </div>
-            <div id="pdf-voyageNo" style="padding: 5px; width: 100px"></div>
-          </div>
-          <div style="display: flex; border: 1px solid black; border-top: none">
-            <div style="padding: 5px; border-right: 1px solid black">
-              Container Serial No:
-            </div>
-            <div id="pdf-containerSerialNo" style="padding: 5px; width: 100px"></div>
-          </div>
         </div>
-      </div>
-      <h2
-        style="
-          text-align: center;
-          font-size: 18px;
-          font-weight: bold;
-          margin: 10px 0;
-        "
-      >
-        Container Damage Report
-      </h2>
-      <div style="display: flex; justify-content: space-between">
-        <div style="width: 48%; border: 1px solid black; padding: 10px">
-          <h3
-            style="
-              text-align: center;
-              font-weight: bold;
-              font-size: 12px;
-              margin-bottom: 10px;
-            "
-          >
-            MARK DAMAGE ON PLAN
-          </h3>
-          <div
-            style="
-              display: flex;
-              flex-wrap: wrap;
-              justify-content: center;
-              gap: 5px;
-            "
-          >
-            <img
-              src="images/Rear-Side-Container.png"
-              style="width: 80px; height: auto; border: 1px solid #ccc"
-            />
-            <img
-              src="images/Front-Side-Container.png"
-              style="width: 80px; height: auto; border: 1px solid #ccc"
-            />
-            <img
-              src="images/Top-Side-Container.png"
-              style="width: 80px; height: auto; border: 1px solid #ccc"
-            />
-            <img
-              src="images/Under-Side-Container.png"
-              style="width: 80px; height: auto; border: 1px solid #ccc"
-            />
-            <img
-              src="images/Right-Side-Container.png"
-              style="width: 80px; height: auto; border: 1px solid #ccc"
-            />
-            <img
-              src="images/Left-Side-Container.png"
-              style="width: 80px; height: auto; border: 1px solid #ccc"
-            />
-            <img
-              src="images/Interior-Side-Container.png"
-              style="width: 80px; height: auto; border: 1px solid #ccc"
-            />
-          </div>
-          <div style="border: 1px solid black; padding: 5px; margin-top: 20px">
-            Container: <span id="pdf-containerStatus"></span>
-          </div>
-          <div style="border: 1px solid black; padding: 5px; border-top: none">
-            Damage To: Contents: <span id="pdf-damageContents"></span>
-          </div>
-          <div style="border: 1px solid black; padding: 5px; border-top: none">
-            Signature of Person Reporting:
-            <span id="pdf-reportingPerson"></span>
-          </div>
-        </div>
-        <div style="width: 48%; border: 1px solid black; padding: 10px">
-          <h3
-            style="
-              text-align: center;
-              font-weight: bold;
-              font-size: 12px;
-              margin-bottom: 10px;
-            "
-          >
-            Area of Damage Efficiency / Checklist in Appropriate Box
-          </h3>
-          <div style="display: flex; justify-content: space-between">
-            <div style="width: 48%">
-              <h4 style="font-weight: bold; font-size: 11px">FRONT</h4>
-              <div id="pdf-frontPanel">1. Panel</div>
-              <div id="pdf-frontIntExtPosts">2. Int/Ext Posts</div>
-              <div id="pdf-frontCornerPosts">3. Corner Posts</div>
-              <h4 style="font-weight: bold; font-size: 11px; margin-top: 10px">
-                SIDES
-              </h4>
-              <div id="pdf-sidesPanel">4. Panel</div>
-              <div id="pdf-sidesIntExtPosts">5. Int/Ext Posts</div>
-              <div id="pdf-sidesTopRail">6. Top Rail</div>
-              <div id="pdf-sidesBottomRail">7. Bottom Rail</div>
-              <h4 style="font-weight: bold; font-size: 11px; margin-top: 10px">
-                DOORS/REAR
-              </h4>
-              <div id="pdf-doorsPanel">8. Panel</div>
-              <div id="pdf-doorsDoorGear">9. Door Gear</div>
-              <div id="pdf-doorsCornerPost">10. Corner Post</div>
+         <div style="border: 2px solid black; margin-top: 5px;">
+            <div style="display: flex;">
+                <div style="padding: 4px 8px; border-right: 1px solid black; font-weight: bold;">Container Serial Number:</div>
+                <div id="pdf-containerSerialNo" style="padding: 4px 8px; width: 100%;"></div>
             </div>
-            <div style="width: 48%">
-              <h4 style="font-weight: bold; font-size: 11px">ROOF</h4>
-              <div id="pdf-roofPanel">11. Panel/Tift</div>
-              <div id="pdf-roofTiftWire">12. Tift Wire</div>
-              <h4 style="font-weight: bold; font-size: 11px; margin-top: 10px">
-                UNDER SIDES
-              </h4>
-              <div id="pdf-underBearers">13. Bearers</div>
-              <div id="pdf-underGussets">14. Gussets</div>
-              <h4 style="font-weight: bold; font-size: 11px; margin-top: 10px">
-                INTERIOR
-              </h4>
-              <div id="pdf-interiorFlooring">15. Flooring</div>
-              <div id="pdf-interiorInteriorPanel">
-                16. Interior Panel/Battents
-              </div>
-              <div id="pdf-interiorRaftBows">17. Roft Bows</div>
-              <h4 style="font-weight: bold; font-size: 11px; margin-top: 10px">
-                OTHER
-              </h4>
-              <div id="pdf-othersSeals">18. Seals</div>
+        </div>
+
+        <!-- Main Content -->
+        <div style="display: flex; justify-content: space-between; margin-top: 10px; border: 2px solid black;">
+            
+            <!-- Left Column -->
+            <div style="width: 40%; border-right: 2px solid black;">
+                <div style="text-align: center; font-weight: bold; padding: 5px; border-bottom: 2px solid black;">MARK DAMAGE ON PLAN</div>
+                <div style="padding: 10px; text-align: center;">
+                    <div style="display: flex; justify-content: space-around; align-items: center; margin-bottom: 10px;">
+                        <div style="text-align: center;">
+                            <img src="images/Rear-Side-Container.png" style="width: 80px; height: auto;" />
+                            <div id="pdf-check-rearSideCheck"></div>
+                        </div>
+                        <div style="text-align: center;">
+                            <img src="images/Front-Side-Container.png" style="width: 80px; height: auto;" />
+                            <div id="pdf-check-frontSideCheck"></div>
+                        </div>
+                    </div>
+                     <div style="display: flex; justify-content: space-around; align-items: center; margin-bottom: 10px;">
+                        <div style="text-align: center;">
+                            <img src="images/Top-Side-Container.png" style="width: 80px; height: auto;" />
+                            <div id="pdf-check-topSideCheck"></div>
+                        </div>
+                        <div style="text-align: center;">
+                            <img src="images/Under-Side-Container.png" style="width: 80px; height: auto;" />
+                            <div id="pdf-check-underSideCheck"></div>
+                        </div>
+                    </div>
+                     <div style="display: flex; justify-content: space-around; align-items: center;">
+                        <div style="text-align: center;">
+                            <img src="images/Right-Side-Container.png" style="width: 80px; height: auto;" />
+                            <div id="pdf-check-rightSideCheck"></div>
+                        </div>
+                        <div style="text-align: center;">
+                             <img src="images/Interior-Side-Container.png" style="width: 80px; height: auto;" />
+                            <div id="pdf-check-interiorCheck"></div>
+                        </div>
+                        <div style="text-align: center;">
+                            <img src="images/Left-Side-Container.png" style="width: 80px; height: auto;" />
+                            <div id="pdf-check-leftSideCheck"></div>
+                        </div>
+                    </div>
+                </div>
+                <div style="border-top: 2px solid black; padding: 5px;" id="pdf-containerStatus">Container: Loaded / Empty</div>
+                <div style="border-top: 1px solid black; padding: 5px;" id="pdf-damageContents">Damage To: Contents: Yes / No</div>
+                <div style="border-top: 1px solid black; padding: 5px;" id="pdf-reportingPerson">Signature of Person Reporting: </div>
             </div>
-          </div>
+
+            <!-- Right Column -->
+            <div style="width: 60%; padding: 5px;">
+                <div style="text-align: center; font-weight: bold; border-bottom: 1px solid black; padding-bottom: 5px;">Area of Damage Efficiency / Checklist in Appropriate Box</div>
+                <div style="display: flex; justify-content: space-between; font-size: 9px; padding: 5px 0;">
+                    <div style="width: 48%;">
+                        <div style="font-weight: bold; margin-bottom: 5px;">FRONT</div>
+                        <div id="pdf-frontPanel">1. Panel</div>
+                        <div id="pdf-frontIntExtPosts">2. Int/Ext Posts</div>
+                        <div id="pdf-frontCornerPosts">3. Corner Posts</div>
+                        <div style="font-weight: bold; margin-top: 10px; margin-bottom: 5px;">SIDES</div>
+                        <div id="pdf-sidesPanel">4. Panel</div>
+                        <div id="pdf-sidesIntExtPosts">5. Int/Ext Posts</div>
+                        <div id="pdf-sidesTopRail">6. Top Rail</div>
+                        <div id="pdf-sidesBottomRail">7. Bottom Rail</div>
+                    </div>
+                    <div style="width: 48%;">
+                        <div style="font-weight: bold; margin-bottom: 5px;">ROOF</div>
+                        <div id="pdf-roofPanel">11. Panel/Tift</div>
+                        <div id="pdf-roofTiftWire">12. Tift Wire</div>
+                        <div style="font-weight: bold; margin-top: 10px; margin-bottom: 5px;">UNDER SIDES</div>
+                        <div id="pdf-underBearers">13. Bearers</div>
+                        <div id="pdf-underGussets">14. Gussets</div>
+                    </div>
+                </div>
+                 <div style="display: flex; justify-content: space-between; font-size: 9px; padding: 5px 0;">
+                    <div style="width: 48%;">
+                        <div style="font-weight: bold; margin-top: 10px; margin-bottom: 5px;">DOORS/REAR</div>
+                        <div id="pdf-doorsPanel">8. Panel</div>
+                        <div id="pdf-doorsDoorGear">9. Door Gear</div>
+                        <div id="pdf-doorsCornerPost">10. Corner Post</div>
+                    </div>
+                    <div style="width: 48%;">
+                         <div style="font-weight: bold; margin-top: 10px; margin-bottom: 5px;">INTERIOR</div>
+                        <div id="pdf-interiorFlooring">15. Flooring</div>
+                        <div id="pdf-interiorInteriorPanel">16. Interior Panel/Battents</div>
+                        <div id="pdf-interiorRaftBows">17. Roft Bows</div>
+                        <div style="font-weight: bold; margin-top: 10px; margin-bottom: 5px;">OTHER</div>
+                        <div id="pdf-othersSeals">18. Seals</div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div style="margin-top: 10px">
-        <p>
-          Describe the extent of the damage or deficience and detail how the
-          damage occured. (Include vechile Reg. Nos. driver's names damages to
-          other property, e.t.c)
-        </p>
-        <div style="border: 1px solid black; height: 50px"></div>
-      </div>
-      <div style="margin-top: 10px">
-        <p>
-          Name and Address of party in whose care when damage accured (Liable
-          Party)
-        </p>
-        <div
-          id="pdf-liableParty"
-          style="border: 1px solid black; height: 30px"
-        ></div>
-      </div>
-      <div style="margin-top: 10px">
-        <p>
-          Date letter of recourse sent to liable party (attach copy to insurance
-          & claims deopt)
-        </p>
-        <div style="border: 1px solid black; height: 30px"></div>
-      </div>
-      <div
-        style="display: flex; justify-content: space-between; margin-top: 20px"
-      >
-        <div style="width: 48%">
-          <p>Photo of the Damaged Container</p>
-          <div
-            id="pdf-damagePhoto"
-            style="
-              border: 1px solid black;
-              height: 150px;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-            "
-          >
-            Bagian Foto
-          </div>
+        
+        <div style="border: 2px solid black; border-top: none; padding: 5px;">
+            <p style="margin: 0; font-size: 9px;">Describe the extent of the damage or deficience and detail how the damage occured. (Include vechile Reg. Nos. driver's names damages to other property, e.t.c)</p>
+            <div style="height: 40px;"></div>
         </div>
-        <div style="width: 48%; display: flex; justify-content: space-between">
-          <div style="width: 48%; text-align: center">
-            <p>Pihak Kapal/Agent</p>
-            <div
-              id="pdf-signatureShip"
-              style="
-                border-bottom: 1px dotted black;
-                height: 80px;
-                margin-top: 50px;
-              "
-            ></div>
-          </div>
-          <div style="width: 48%; text-align: center">
-            <p>Pihak Kapal/Agent</p>
-            <div
-              id="pdf-signatureAgent"
-              style="
-                border-bottom: 1px dotted black;
-                height: 80px;
-                margin-top: 50px;
-              "
-            ></div>
-          </div>
+        <div style="border: 2px solid black; border-top: none; padding: 5px;">
+            <p style="margin: 0; font-size: 9px;">Name and Address of party in whose care when damage accured (Liable Party)</p>
+            <div id="pdf-liableParty" style="height: 30px;"></div>
         </div>
-      </div>
-      <div style="text-align: center; margin-top: 20px">
-        <p>Operational</p>
-        <div
-          id="pdf-signatureOperational"
-          style="
-            border-bottom: 1px dotted black;
-            height: 80px;
-            margin-top: 50px;
-            width: 200px;
-            margin-left: auto;
-            margin-right: auto;
-          "
-        ></div>
-      </div>
+         <div style="border: 2px solid black; border-top: none; padding: 5px;">
+            <p style="margin: 0; font-size: 9px;">Date letter of recourse sent to liable party (attach copy to insurance & claims deopt)</p>
+            <div style="height: 30px;"></div>
+        </div>
+
+        <!-- Footer -->
+        <div style="display: flex; justify-content: space-between; margin-top: 10px;">
+            <div style="width: 48%;">
+                <p style="margin: 0 0 5px 0; font-weight: bold;">Photo of the Damaged Container</p>
+                <div id="pdf-damagePhoto" style="border: 1px solid black; height: 180px; display: flex; justify-content: center; align-items: center;">Bagian Foto</div>
+            </div>
+            <div style="width: 48%; display: flex; justify-content: space-between; align-items: flex-end;">
+                 <div style="width: 48%; text-align: center;">
+                    <p>Pihak Kapal/Agent</p>
+                    <div id="pdf-signatureShip" style="border-bottom: 1px dotted black; height: 80px;"></div>
+                </div>
+                <div style="width: 48%; text-align: center;">
+                    <p>Pihak Kapal/Agent</p>
+                    <div id="pdf-signatureAgent" style="border-bottom: 1px dotted black; height: 80px;"></div>
+                </div>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 20px">
+            <p>Operational</p>
+            <div id="pdf-signatureOperational" style="border-bottom: 1px dotted black; height: 80px; width: 200px; margin-left: auto; margin-right: auto;"></div>
+        </div>
     </div>
   </body>
 </html>
