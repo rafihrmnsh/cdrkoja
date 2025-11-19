@@ -52,11 +52,12 @@ function loadReports() {
 
         let rowContent = '';
         displayKeys.forEach(key => {
+            let headerText = key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
             if (key === 'Status') {
-                rowContent += `<td>${isSigned ? '<span class="badge bg-success">Signed</span>' : '<span class="badge bg-warning">Unsigned</span>'}</td>`;
+                rowContent += `<td data-label="${headerText}">${isSigned ? '<span class="badge bg-success">Signed</span>' : '<span class="badge bg-warning">Unsigned</span>'}</td>`;
             } else {
                 let value = report[key] || '-';
-                rowContent += `<td>${value}</td>`;
+                rowContent += `<td data-label="${headerText}">${value}</td>`;
             }
         });
         row.innerHTML = rowContent;
@@ -251,5 +252,26 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('logout-btn').addEventListener('click', () => {
         localStorage.removeItem('loggedIn');
         window.location.href = 'index.html';
+    });
+
+    const searchInput = document.getElementById('search-input');
+    searchInput.addEventListener('keyup', () => {
+        const searchTerm = searchInput.value.toLowerCase();
+        const tableBody = document.getElementById('reports-table-body');
+        const rows = tableBody.getElementsByTagName('tr');
+
+        for (let i = 0; i < rows.length; i++) {
+            const row = rows[i];
+            // If the row is the 'no reports found' row, don't hide it
+            if (row.getElementsByTagName('td').length === 1 && row.getElementsByTagName('td')[0].colSpan > 1) {
+                continue;
+            }
+            const rowText = row.textContent.toLowerCase();
+            if (rowText.includes(searchTerm)) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        }
     });
 });
