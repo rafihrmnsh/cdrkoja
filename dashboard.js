@@ -110,7 +110,7 @@ function openDraftModal(reportId) {
     draftModal.show();
 }
 
-async function generatePdf(reportId, jsPDF) {
+async function generateJpg(reportId) {
     const report = reports.find(r => r.id === reportId);
     if (!report) return;
 
@@ -215,45 +215,25 @@ async function generatePdf(reportId, jsPDF) {
     const pdfTemplate = document.getElementById('pdf-template-container');
     const canvas = await html2canvas(pdfTemplate, {
         scale: 2,
-        useCORS: true // In case images are from other origins
+        useCORS: true,
+        height: 1100,
+        windowHeight: 1100
     });
-    const imgData = canvas.toDataURL('image/png');
+    const imgData = canvas.toDataURL('image/jpeg', 0.9); // Convert to JPEG with quality 0.9
     
-    // Using a standard A4 size and fitting the content
-    const pdf = new jsPDF({
-        orientation: 'portrait',
-        unit: 'in',
-        format: 'a4'
-    });
-
-    const pdfWidth = pdf.internal.pageSize.getWidth();
-    const pdfHeight = pdf.internal.pageSize.getHeight();
-    const canvasWidth = canvas.width;
-    const canvasHeight = canvas.height;
-    const canvasAspectRatio = canvasWidth / canvasHeight;
-    const pdfAspectRatio = pdfWidth / pdfHeight;
-
-    let finalWidth, finalHeight;
-
-    if (canvasAspectRatio > pdfAspectRatio) {
-        finalWidth = pdfWidth;
-        finalHeight = pdfWidth / canvasAspectRatio;
-    } else {
-        finalHeight = pdfHeight;
-        finalWidth = pdfHeight * canvasAspectRatio;
-    }
-
-    const x = (pdfWidth - finalWidth) / 2;
-    const y = (pdfHeight - finalHeight) / 2;
-    
-    pdf.addImage(imgData, 'PNG', x, y, finalWidth, finalHeight);
-    pdf.save(`CDR-${report.containerSerialNo || 'report'}.pdf`);
+    // Create a temporary link element to trigger download
+    const link = document.createElement('a');
+    link.href = imgData;
+    link.download = `CDR-${report.containerSerialNo || 'report'}.jpg`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
 }
 
 
 // Event Listeners
 document.addEventListener('DOMContentLoaded', () => {
-    const { jsPDF } = window.jspdf;
+    // const { jsPDF } = window.jspdf; // Removed
     checkAuth();
     
     const canvasShip = document.getElementById('signature-pad-ship');
@@ -284,7 +264,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.getElementById('convert-to-pdf-btn').addEventListener('click', () => {
-        generatePdf(currentReportId, jsPDF);
+        generateJpg(currentReportId); // Call the new JPG generation function
     });
 
     document.getElementById('reports-table-body').addEventListener('click', (event) => {
